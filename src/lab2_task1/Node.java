@@ -36,10 +36,17 @@ public class Node {
 	return terminal;
     }
     
+    /** Add new child node at certain index
+     * Precondition: index in 0..93
+     * @param index index of child node in array
+     */
     public void setChild(int index) {
 	this.children[index] = new Node();
     }
     
+    /** Set the flag indicating whether letter is ending or not
+     * @param terminal true if node ends a word, otherwise is false
+     */
     public void setTerminal(boolean terminal) {
 	this.terminal = terminal;
     }
