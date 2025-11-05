@@ -33,42 +33,9 @@ public class Trie {
     }
 
     public static void main(String args[]) {
-	Trie trie = new Trie();
-	trie.insert("a");
-	trie.insert("ce");
-	trie.insert("cho");
-	trie.insert("chea");
-	trie.insert("cher");
-	trie.insert("che");
 	
-	printWords(trie.root, new StringBuilder());
-	
-	//trie.getByPrefix("ch");
-	pw(trie.getByPrefix("ch"));
     }
     
-    private static void pw(String[] array) {
-	for (int i = 0; i < array.length; i++) {
-	    if (i > 0) System.out.print(", ");
-	    System.out.print(array[i]);
-	}
-    }
-    
-    private static void printWords(Node node, StringBuilder currentWord) {
-	    if (node.isTerminal()) {
-	        System.out.println("  " + currentWord.toString());
-	    }
-	    
-	    for (int i = 0; i < 94; i++) {
-	        Node child = node.getChild(i);
-	        if (child != null) {
-	            char ch = (char) (i + '!');
-	            currentWord.append(ch);
-	            printWords(child, currentWord);
-	            currentWord.deleteCharAt(currentWord.length() - 1);
-	        }
-	    }
-	}
     /**
      * Insert a word into a trie 
      * Precondition: word consists of valid characters only
