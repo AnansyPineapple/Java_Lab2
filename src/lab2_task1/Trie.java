@@ -1,5 +1,8 @@
 package lab2_task1;
 
+import java.awt.*;
+import javax.swing.*;
+
 /**
  * An object of class Trie represents a prefix tree
  * 
@@ -33,7 +36,88 @@ public class Trie {
     }
 
     public static void main(String args[]) {
+	window();
+    }
+    
+    /**
+     * Create UI
+     */
+    public static void window () {
+	// Create window frame
+	JFrame window = new JFrame("Word Finder");
+	window.setSize(600, 400);
+	window.setResizable(false);
+	window.setLocationRelativeTo(null);
+	window.setLayout(new BorderLayout());
 	
+	// Create left panel with instruction
+	JPanel leftPanel = new JPanel();
+	leftPanel.setPreferredSize(new Dimension(200, 400));
+	leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+	leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	
+	// Create instruction title
+	JLabel insLabel = new JLabel("Instruction");
+	
+	// Create instruction contents
+	JTextArea insArea = new JTextArea("Text of instruuuuuction");
+	
+	insArea.setAlignmentX(Component.LEFT_ALIGNMENT);
+	insArea.setPreferredSize(new Dimension(180, 350));
+	
+	insArea.setEditable(false);
+	insArea.setLineWrap(true);
+	insArea.setWrapStyleWord(true);
+	
+	insArea.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+	insArea.setBackground(Color.decode("#FFFFCC"));
+	
+	// Assemble left panel
+	leftPanel.add(insLabel);
+	leftPanel.add(insArea);
+	
+	// Create righ panel with input fields
+	JPanel rightPanel = new JPanel();
+	rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+	rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	
+	// Create text input title
+	JLabel textLabel = new JLabel("Text: ");
+	textLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+	
+	// Create scrollable text input area
+	JTextArea textArea = new JTextArea();
+	textArea.setAlignmentX(Component.LEFT_ALIGNMENT);
+	textArea.setLineWrap(true);
+	textArea.setWrapStyleWord(true);
+	
+	JScrollPane textScrollPane = new JScrollPane(textArea);
+	textScrollPane.setAlignmentX(Component.LEFT_ALIGNMENT);
+	textScrollPane.setMaximumSize(new Dimension(380, Integer.MAX_VALUE));
+	textScrollPane.setPreferredSize(new Dimension(380, 200));	
+	
+	// Create word input title
+	JLabel wordLabel = new JLabel("Word: ");
+	wordLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+	
+	// Create word input area
+	JTextField wordField = new JTextField();
+	wordField.setAlignmentX(Component.LEFT_ALIGNMENT);
+	wordField.setMaximumSize(new Dimension(380, 30));
+	
+	// Assemble right panel
+	rightPanel.add(textLabel);
+	rightPanel.add(textScrollPane);
+	rightPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+	rightPanel.add(wordLabel);
+	rightPanel.add(wordField);
+	rightPanel.add(Box.createRigidArea(new Dimension(0, 15)));
+	
+	// Assemble frame
+	window.add(leftPanel, BorderLayout.WEST);
+	window.add(rightPanel, BorderLayout.CENTER);
+	
+	window.setVisible(true);
     }
     
     /**
