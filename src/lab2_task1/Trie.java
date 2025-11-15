@@ -102,10 +102,11 @@ public class Trie {
      * @return word which consists from letters only
      */
     private static String cleanWord(String word) {
-	// Delete all characters except for letters and "-"
+	// Delete all characters except for letters, hyphen and apostrophe
 	return word.replaceAll("[^a-zA-Z0-9-']", "");	 
     }
     
+    /** Open the main window */
     public static void main(String args[]) {
 	window();
     }
@@ -297,11 +298,21 @@ public class Trie {
 	// Create instruction contents with settings	
 	JTextArea insArea = new JTextArea("Welcome to the Word Finder!\n"
 		+ "1. Write your text in the text field\n"
-		+ "2. Write a prefix you want to find in your text\n"
+		+ "2. Write a prefix you want to find words with in your text\n"
 		+ "3. Press the button with loupe to proceed\n\n"
-		+ "All found words will be highlited in the text\n\n"
-		+ "Notes: you can only use english letters and symbols and digits that are present on the usual keyboard. "
-		+ "Other charactes will cause an error.");
+		+ "All found words will be highlighted in the text\n\n"
+		+ "Rules:\n"
+		+ "Text and prefix can consist from letters, digits, hyphen and apostrophe only");
+	// Highlight word "highlighted" as an example
+	Highlighter highlighter = insArea.getHighlighter();
+	try {
+	    highlighter.addHighlight(insArea.getText().indexOf("highlighted"), 
+	    	insArea.getText().indexOf("highlighted") + "highlighted".length(), 
+	    	new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW));
+	} 
+	catch (BadLocationException e) {
+	    e.printStackTrace();
+	}
 		
 	insArea.setAlignmentX(Component.LEFT_ALIGNMENT);
 	insArea.setPreferredSize(new Dimension(230, 350));
